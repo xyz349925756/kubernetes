@@ -1,4 +1,5 @@
 #!/bin/bash
+#yum install sshpass -y
 for h in master{01..03} node{01,02}
 do
   echo "---------------------------HostName: $h  Pub-Key start ------------------------------" 
