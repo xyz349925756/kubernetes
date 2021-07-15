@@ -1,0 +1,90 @@
+"设置行号"
+"set nu"
+"自动语法高亮"
+syntax on
+"自动缩进"
+"set autoindent"
+"关闭兼容模式"
+set nocompatible
+"激活鼠标"
+"set mouse=c"
+"开启语法"
+syntax enable
+"tab缩进4个空格"
+"set tabstop=4"
+"设定<< >>移动宽度4"
+set shiftwidth=4
+"自动缩进"
+set ai
+"智能缩进"
+set si
+"显示标尺"
+set ruler
+"显示匹配的[]{}"
+set showmatch
+"编码设置"
+set encoding=utf-8
+set fileencodings=utf-t
+set termencoding=utf-8
+"开启新行时使用智能自动缩进"
+set smartindent
+set cin
+set showmatch
+"背景色"
+"set background=dark"
+"设置光标下划线"
+set cursorline
+
+map <F10> : set paste <cr>
+map <F11> : set nopaste <cr>
+
+autocmd BufNewFile *.sh exec ":call AddUsr()"
+map <F7> ms:call AddTitle()<cr>'s
+
+function AddAuthor()
+        let n=1
+        while n < 5
+                let line = getline(n)
+                if line =~'^\s*\*\s*\S*Last\s*modified\s*:\s*\S*.*$'
+                        call UpdateTitle()
+                        return
+                endif
+                let n = n + 1
+        endwhile
+        call AddTitle()
+endfunction
+
+function UpdateTitle()
+        normal m'
+        execute '/* Last modified\s*:/s@:.*$@\=strftime(": %Y-%m-%d %H:%M")@'
+        normal "
+        normal mk
+        execute '/* Filename\s*:/s@:.*$@\=": ".expand("%:t")@'
+        execute "noh"
+        normal 'k
+        echohl WarningMsg | echo "Successful in updating the copy right." | echohl None
+endfunction
+
+function AddTitle()
+        call append(0,"#!/bin/bash")
+        call append(1,"#----------------------------------------------")
+        call append(2,"# Author        : 349925756")
+        call append(3,"# Email         : 349925756@qq.com")
+        call append(4,"# Last modified : ".strftime("%Y-%m-%d %H:%M"))
+        call append(5,"# Filename      : ".expand("%:t"))
+        call append(6,"# Description   : ")
+        call append(7,"# Version       : 1.1 ")
+        call append(8,"#----------------------------------------------")
+        call append(9," ")
+    	call append(10,"#Notes:  ")
+        echohl WarningMsg | echo "Successful in adding the copyright." | echohl None
+
+endfunction
+
+function AddUsr()
+        call append(0,"#!/bin/bash")
+endfunction
+
+
+
+
