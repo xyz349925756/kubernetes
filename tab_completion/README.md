@@ -4,6 +4,10 @@ This is the docker tab auto-completion file, because using the binary installati
 
 
 使用方法：
+```bash
+
+
+
 yum -y install bash-completion bash-completion-extras
 
 cp /server/soft/docker*   /usr/share/bash-completion/completions/
@@ -22,3 +26,4 @@ context    help       kill       node       rename     secret     system     vol
 build    create   exec     kill     port     push     run      stop     up       
 bundle   down     help     logs     ps       restart  scale    top      version  
 config   events   images   pause    pull     rm       start    unpause  
+```
