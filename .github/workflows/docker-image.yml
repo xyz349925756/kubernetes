@@ -15,7 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: | 
+          docker build . --file Dockerfile --tag test
+          docker save test -o test.tar.gz
+      
 
     - name: Checkout
       uses: actions/checkout@v2
