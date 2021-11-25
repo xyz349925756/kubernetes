@@ -37,7 +37,7 @@ jobs:
           docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           
-          docker save -o ${{matrix.podname}}.tar ${{matrix.podname}}:${{matrix.version}}
+          docker save -o "${{matrix.podname}}.tar ${{matrix.podname}}:${{matrix.version}}"
 
       - name: 上传镜像
         uses: actions/upload-artifact@v2
