@@ -1,0 +1,10 @@
+auth:
+  registry.hub.docker.com:
+    username: USERNAME
+    password: PASSWORD
+images:
+  k8s.gcr.io/sig-storage/csi-attacher: xyz349925756/kubernetes/csi-attacher
+  k8s.gcr.io/sig-storage/csi-provisioner: xyz349925756/kubernetes/csi-provisioner
+  k8s.gcr.io/sig-storage/csi-node-driver-registrar: xyz349925756/kubernetes/csi-node-driver-registrar
+  k8s.gcr.io/sig-storage/csi-resizer: xyz349925756/kubernetes/csi-resizer
+  k8s.gcr.io/sig-storage/csi-snapshotter: xyz349925756/kubernetes/csi-snapshotter
