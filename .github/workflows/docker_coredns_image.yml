@@ -1,5 +1,5 @@
 # build kubernetes k8s.grc.io/images
-name: Kubernetes-Images
+name: CoreDNS
 on:
   push:
     branches: [ main ]
@@ -14,22 +14,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/metrics-server/metrics-server
-            pod-name: metrics-server
-            version: v0.5.2
-          - podname: k8s.gcr.io/ingress-nginx/controller
-            pod-name: ingress-nginx-controller
-            version: v1.0.5
-          - podname: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
-            pod-name: ingress-nginx-kube-webhook-certgen
-            version: v1.1.1
           - podname: k8s.gcr.io/coredns/coredns
             pod-name: coredns
             version: v1.8.6
-          - podname: k8s.gcr.io/pause
-            pod-name: pause
-            version: 3.5
-      
+
     steps:
       - name: 准备结束
         uses: actions/checkout@v2
@@ -37,11 +25,6 @@ jobs:
       - name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file coredns/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}          
            
       - name: 上传镜像
