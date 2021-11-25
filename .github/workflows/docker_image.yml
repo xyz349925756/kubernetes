@@ -1,5 +1,5 @@
 # build kubernetes k8s.grc.io/images
-name: K8s-Images-CI
+name: Kubernetes-Images
 on:
   push:
     branches: [ main ]
@@ -44,7 +44,7 @@ jobs:
           docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}       
           
-       - name: 构建 "${{matrix.pod-name}}"
+       -name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
