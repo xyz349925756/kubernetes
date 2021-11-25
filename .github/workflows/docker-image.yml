@@ -14,18 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+
     - name: Build the Docker image
       run: | 
-          docker build . --file Dockerfile --tag test
-          docker save test -o test.tar.gz
-      
+         docker build . --file Dockerfile --tag test
+         docker save -o test.tar test
 
-    - name: Checkout
-      uses: actions/checkout@v2
-
-    - name: cache
-      uses: actions/upload-artifact@v2
+    - name: update
+      uses: actions/download-artifact@v2
       with:
         name: test
-        path: test.tar.gz
-        if-no-files-found: error
+        path: test.tar
+
