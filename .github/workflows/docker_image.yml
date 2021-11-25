@@ -36,9 +36,7 @@ jobs:
           docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-
-      - name: 打包镜像
-        run: |
+          
           docker save -o ${{matrix.podname}}.tar ${{matrix.podname}}:${{matrix.version}}
 
       - name: 上传镜像
