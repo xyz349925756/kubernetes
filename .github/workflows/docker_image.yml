@@ -44,28 +44,25 @@ jobs:
           docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}       
           
-       -name: 构建 "${{matrix.pod-name}}"
+      - name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
-
 
       - name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
 
-
       - name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}          
            
-
       - name: 上传镜像
         uses: actions/upload-artifact@v2
         with:
           name: ${{matrix.pod-name}}-${{matrix.version}}
           path: ${{matrix.pod-name}}.tar
           retention-days: 90
-          if-no-files-found: error          
+          if-no-files-found: error
