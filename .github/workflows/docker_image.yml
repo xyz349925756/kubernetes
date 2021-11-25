@@ -15,14 +15,19 @@ jobs:
       matrix:
         include:
           - podname: k8s.gcr.io/metrics-server/metrics-server
+            pod-name: metrics-server
             version: v0.5.2
           - podname: k8s.gcr.io/ingress-nginx/controller
+            pod-name: ingress-nginx-controller
             version: v1.0.5
           - podname: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
+            pod-name: ingress-nginx-kube-webhook-certgen
             version: v1.1.1
           - podname: k8s.gcr.io/coredns/coredns
+            pod-name: coredns
             version: v1.8.6
           - podname: k8s.gcr.io/pause
+            pod-name: pause
             version: 3.5
       
     steps:
@@ -37,7 +42,7 @@ jobs:
           docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
           
-          docker save -o "${{matrix.podname}}.tar ${{matrix.podname}}:${{matrix.version}}"
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
 
       - name: 上传镜像
         uses: actions/upload-artifact@v2
