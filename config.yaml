@@ -1,7 +1,0 @@
-auth:
-  registry.hub.docker.com:
-    username: USERNAME
-    password: PASSWORD
-images:
-  k8s.gcr.io/coredns/coredns: xyz349925756/coredns/coredns
-

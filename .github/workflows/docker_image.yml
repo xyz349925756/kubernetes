@@ -1,0 +1,49 @@
+# build kubernetes k8s.grc.io/images
+name: K8s-Images-CI
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 编译 "${{matrix.podname}} ${{matrix.version}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - podname: k8s.gcr.io/metrics-server/metrics-server
+            version: v0.5.2
+          - podname: k8s.gcr.io/ingress-nginx/controller
+            version: v1.0.5
+          - podname: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
+            version: v1.1.1
+          - podname: k8s.gcr.io/coredns/coredns
+            version: v1.8.6
+          - podname: k8s.gcr.io/pause
+            version: 3.5
+      
+    steps:
+      - name: 准备结束
+        uses: actions/checkout@v2
+
+      - name: 构建镜像
+        run: |
+          docker build . --file coredns/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+
+      - name: 打包镜像
+        run: |
+          docker save -o ${{matrix.podname}}.tar ${{matrix.podname}}:${{matrix.version}}
+
+      - name: 上传镜像
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{matrix.podname}} ${{matrix.version}}
+          path: ${{matrix.podname}}.tar
+          retention-days: 365    
