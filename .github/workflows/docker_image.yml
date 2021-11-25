@@ -34,20 +34,38 @@ jobs:
       - name: 准备结束
         uses: actions/checkout@v2
 
-      - name: 构建镜像
+      - name: 构建 "${{matrix.pod-name}}"
         run: |
           docker build . --file coredns/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
-          
           docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
+          
+      - name: 构建 "${{matrix.pod-name}}"
+        run: |
+          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}       
+          
+       - name: 构建 "${{matrix.pod-name}}"
+        run: |
+          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
+
+
+      - name: 构建 "${{matrix.pod-name}}"
+        run: |
+          docker build . --file metrics-server/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}
+
+
+      - name: 构建 "${{matrix.pod-name}}"
+        run: |
+          docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}          
+           
 
       - name: 上传镜像
         uses: actions/upload-artifact@v2
         with:
           name: ${{matrix.pod-name}}-${{matrix.version}}
           path: ${{matrix.pod-name}}.tar
-          retention-days: 365
+          retention-days: 90
           if-no-files-found: error          
