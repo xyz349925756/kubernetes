@@ -22,8 +22,8 @@ jobs:
       run: docker save -o test.tar test
 
     - name: update
-      uses: actions/download-artifact@v2
+      uses: actions/upload-artifact@v2
       with:
-        name: test
+        name: my-artifact
         path: test.tar
 
