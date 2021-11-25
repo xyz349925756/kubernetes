@@ -23,6 +23,6 @@ jobs:
     - name: cache
       uses: actions/upload-artifact@v2
       with:
-        name: test.tar.gz
-        path: image/test.tar.gz
+        name: test
+        path: test.tar.gz
         if-no-files-found: error
