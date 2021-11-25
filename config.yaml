@@ -3,11 +3,5 @@ auth:
     username: USERNAME
     password: PASSWORD
 images:
-  k8s.gcr.io/kube-apiserver: xyz349925756/kube-apiserver
-  k8s.gcr.io/kube-controller-manager: xyz349925756/kube-controller-manager
-  k8s.gcr.io/kube-scheduler: xyz349925756/kube-scheduler
-  k8s.gcr.io/kube-proxy: xyz349925756/kube-proxy
-  k8s.gcr.io/pause: xyz349925756/pause
-  k8s.gcr.io/etcd: xyz349925756/etcd
   k8s.gcr.io/coredns/coredns: xyz349925756/coredns/coredns
 
