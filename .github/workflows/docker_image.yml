@@ -48,5 +48,6 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ${{matrix.podname}} ${{matrix.version}}
-          path: ${{matrix.podname}}.tar
-          retention-days: 365    
+          path: ${{matrix.pod-name}}.tar
+          retention-days: 365
+          if-no-files-found: error          
