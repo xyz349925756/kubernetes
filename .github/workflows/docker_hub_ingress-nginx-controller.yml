@@ -2,9 +2,8 @@ name: Ingress-Nginx-Controller镜像推送
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'ingress-nginx-controller/**'
 
 jobs:
   build:

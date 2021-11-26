@@ -2,8 +2,9 @@ name: Metrics-Server镜像推送
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
+    paths:
+      - 'metrics-server/**'
+    
     branches: [ main ]
 
 jobs:
