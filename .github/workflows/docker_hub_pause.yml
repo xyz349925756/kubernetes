@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:  
-          - podname: k8s.gcr.io/pause
+          - podname: pause
             version: 3.5
             hub_name: xyz349925756
             

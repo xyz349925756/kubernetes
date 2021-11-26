@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/metrics-server/metrics-server
+          - podname: metrics-server
             version: v0.5.2      
             hub_name: xyz349925756
             

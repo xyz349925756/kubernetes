@@ -27,7 +27,7 @@ jobs:
           - podname: k8s.gcr.io/metrics-server/metrics-server
             pod-name: metrics-server
             version: v0.5.2      
-          - podname: pause
+          - podname: k8s.gcr.io/pause
             pod-name: pause
             version: 3.5
           - hub_name: xyz349925756

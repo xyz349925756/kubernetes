@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/coredns/coredns
+          - podname: coredns
             version: v1.8.6
             hub_name: xyz349925756
             
@@ -34,3 +34,5 @@ jobs:
         run:
           docker build . --file coredns/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
           docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
+          
+          docker push xyz349925756/coredns:tagname
