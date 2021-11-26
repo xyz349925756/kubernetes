@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: pause
+          - podname: k8s.gcr.io/pause
             pod-name: pause
             version: 3.5
       

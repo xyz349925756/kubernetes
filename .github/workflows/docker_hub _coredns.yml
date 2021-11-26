@@ -1,0 +1,36 @@
+name: Coredns镜像推送
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    name: 编译 "${{matrix.podname}} ${{matrix.version}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - podname: k8s.gcr.io/coredns/coredns
+            version: v1.8.6
+            hub_name: xyz349925756
+            
+    steps:
+      - name: 准备...
+        uses: actions/checkout@v2
+
+      - name: 登录 docker.io
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ matrix.hub_name}}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: "构建及上传"
+        run:
+          docker build . --file coredns/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
