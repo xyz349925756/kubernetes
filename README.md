@@ -1,3 +1,7 @@
+[![CoreDNS](README.assets/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Metrics-Server](README.assets/badge-16379280787692.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-16379281059084.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-16379281332736.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Pause](README.assets/badge-16379281554198.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
+
+
+
 拉取k8s.gcr.io国外镜像。
 
 此仓库包含：
