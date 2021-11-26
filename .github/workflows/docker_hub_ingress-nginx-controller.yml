@@ -29,7 +29,8 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
-      - name: "构建及上传"
-        run:
-          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+      - name: "构建"
+        run: docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          
+      - name: "上传"   
           docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
