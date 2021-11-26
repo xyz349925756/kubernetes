@@ -30,14 +30,12 @@ jobs:
           - podname: pause
             pod-name: pause
             version: 3.5
-          - hub_registry: docker.io
-            hub_name: xyz349925756
             
     steps:
       - name: 准备...
         uses: actions/checkout@v2
 
-      - name: 登录 "${{ matrix.hub_registry }}"
+      - name: 登录 docker.io
         uses: docker/login-action@v1
         with:
           registry: ${{ matrix.hub_name}}
@@ -46,14 +44,18 @@ jobs:
 
       - name: "构建及上传"
         run:
-          docker build . --file pause/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker build . --file coredns/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
-          docker build . --file metrics-server/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
-          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}  
+          docker build . --file pause/Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          
+          docker build . --file coredns/Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}} 
+          
+          docker build . --file metrics-server/Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          
+          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}} 
+          
+          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{secrets.DOCKER_HUB_USERNAME}}/${{matrix.podname}}:${{matrix.version}}  
           
