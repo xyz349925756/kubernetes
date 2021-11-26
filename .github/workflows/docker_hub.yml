@@ -46,19 +46,14 @@ jobs:
 
       - name: "构建及上传"
         run:
-          docker build . --file pause/Dockerfile --tag ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker build . --file coredns/Dockerfile --tag ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{hub_name}}/${{matrix.podname}}:${{matrix.version}} 
-          docker build . --file metrics-server/Dockerfile --tag ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{hub_name}}/${{matrix.podname}}:${{matrix.version}} 
-          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}
-          docker push ${{hub_name}}/${{matrix.podname}}:${{matrix.version}}  
+          docker build . --file pause/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker build . --file coredns/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
+          docker build . --file metrics-server/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
+          docker build . --file ingress-nginx-kube-webhook-certgen/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}  
           
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2
-        with:
-          context: .
