@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
+          - podname: ingress-nginx-kube-webhook-certgen
             version: v1.1.1
             hub_name: xyz349925756
             
