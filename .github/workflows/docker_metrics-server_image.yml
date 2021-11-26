@@ -2,9 +2,8 @@
 name: Metrics-Server
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'metrics-server/**'
 
 jobs:
   build:

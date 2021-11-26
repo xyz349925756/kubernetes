@@ -2,9 +2,8 @@
 name: Ingress-Nginx-Kube-webhook-certgen
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'ingress-nginx-kube-webhook-certgen/**'
 
 jobs:
   build:

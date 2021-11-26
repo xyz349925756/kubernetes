@@ -101,6 +101,24 @@ calico-node-9vbcn                          1/1     Running   11 (3h11m ago)   4d
 coredns-6cf54f794c-7rmgx                   1/1     Running   11 (3h11m ago)   4d
 coredns-6cf54f794c-tn5h4                   1/1     Running   11 (3h11m ago)   4d
 metrics-server-dbf765b9b-cgxh5             1/1     Running   0                59s
+
+[root@master01 ~]# kubectl top pod -A
+NAMESPACE       NAME                                       CPU(cores)   MEMORY(bytes)   
+dev             nginx-deployment-694d6c9559-7mdqr          0m           1Mi             
+dev             nginx-deployment-694d6c9559-mz5p8          0m           6Mi             
+dev             tomcat-deployment-59ffc6d89f-k2pmk         3m           78Mi            
+dev             tomcat-deployment-59ffc6d89f-p5kg9         3m           94Mi            
+ingress-nginx   ingress-nginx-controller-d6cdcc5d8-bqf8j   3m           91Mi            
+kube-system     calico-kube-controllers-7d7bbc4464-h7wcq   9m           18Mi            
+kube-system     calico-node-2sdkt                          56m          161Mi           
+kube-system     calico-node-9vbcn                          82m          161Mi           
+kube-system     coredns-6cf54f794c-7rmgx                   4m           11Mi            
+kube-system     coredns-6cf54f794c-tn5h4                   6m           11Mi            
+kube-system     metrics-server-dbf765b9b-ftj8w             14m          25Mi            
+[root@master01 ~]# kubectl top node
+NAME       CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%   
+master01   423m         42%    1163Mi          30%       
+node01     372m         37%    958Mi           25%    
 ```
 
 

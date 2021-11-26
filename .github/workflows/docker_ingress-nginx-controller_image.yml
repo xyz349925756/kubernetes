@@ -2,9 +2,8 @@
 name: Ingress-Nginx-Controller
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'ingress-nginx-controller/**'
 
 jobs:
   build:

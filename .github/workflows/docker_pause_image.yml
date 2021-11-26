@@ -2,9 +2,8 @@
 name: Pause
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    paths:
+      - 'pause/**'
 
 jobs:
   build:
