@@ -1,0 +1,72 @@
+name: 镜像推送
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    name: 编译 "${{matrix.podname}} ${{matrix.version}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - podname: k8s.gcr.io/coredns/coredns
+            pod-name: coredns
+            version: v1.8.6
+          - podname: k8s.gcr.io/ingress-nginx/controller
+            pod-name: ingress-nginx-controller
+            version: v1.0.5
+          - podname: k8s.gcr.io/ingress-nginx/kube-webhook-certgen
+            pod-name: ingress-nginx-kube-webhook-certgen
+            version: v1.1.1
+          - podname: k8s.gcr.io/metrics-server/metrics-server
+            pod-name: metrics-server
+            version: v0.5.2      
+          - podname: pause
+            pod-name: pause
+            version: 3.5
+            
+    steps:
+      - name: 初始化仓库
+        uses: actions/checkout@v2
+
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: 登录到docker hub ${{ env.REGISTRY }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      # Extract metadata (tags, labels) for Docker
+      # https://github.com/docker/metadata-action
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      # Build and push Docker image with Buildx (don't push on PR)
+      # https://github.com/docker/build-push-action
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
