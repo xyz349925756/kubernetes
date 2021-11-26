@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: controller
+          - podname: k8s.gcr.io/ingress-nginx/controller
             version: v1.0.5
             hub_name: xyz349925756
             
@@ -33,4 +33,4 @@ jobs:
         run: docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
           
       - name: "上传"   
-          docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
+        run: docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 

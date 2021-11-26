@@ -15,7 +15,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: coredns
+          - podname: k8s.gcr.io/coredns/coredns
             version: v1.8.6
             hub_name: xyz349925756
             
