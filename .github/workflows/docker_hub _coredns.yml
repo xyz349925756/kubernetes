@@ -26,7 +26,6 @@ jobs:
       - name: 登录 docker.io
         uses: docker/login-action@v1
         with:
-          registry: ${{ matrix.hub_name}}
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
 
