@@ -1,8 +1,8 @@
-[![CoreDNS](README.assets/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Metrics-Server](README.assets/badge-16379280787692.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-16379281059084.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-16379281332736.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Pause](README.assets/badge-16379281554198.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
+直接下载镜像：
 
+[![CoreDNS](README.assets/badge-163793027835710.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-163793030305512.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-163793032587014.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Metrics-Server](README.assets/badge-163793034693816.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Pause](README.assets/badge-163793036655918.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
 
-
-拉取k8s.gcr.io国外镜像。
+# 第一种方法
 
 此仓库包含：
 
@@ -20,14 +20,17 @@ k8s.gcr.io/pause:3.5
 
 ![1](README.assets/1.jpg)
 
-> 如何使用？
-这里我们使用metrics-server为例
+# 如何使用？
 
-1.先下载镜像 https://github.com/xyz349925756/kubernetes/actions/runs/1504468381
+> 这里我们使用metrics-server为例
+
+## 1.先下载镜像
+
+https://github.com/xyz349925756/kubernetes/actions/runs/1504468381
 
 ![image-20211126002110691](README.assets/image-20211126002110691.png)
 
-2.上传镜像到装有docker环境的主机
+## 2.上传镜像到装有docker环境的主机
 
 ```sh
 [root@master01 ~]# docker images
@@ -125,9 +128,9 @@ master01   423m         42%    1163Mi          30%
 node01     372m         37%    958Mi           25%    
 ```
 
+## 3.下载地址
 
-
-# 下面的地址点进去再进去下载最新的版本
+下面的地址点进去再进去下载最新的版本，也可以点击上面的标签访问。
 
 ---
 
@@ -159,4 +162,19 @@ https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_imag
 
 https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml
 
----
+
+
+# 第二种方法
+
+Docker Hub: https://hub.docker.com/r/xyz349925756
+
+​           https://hub.docker.com/u/xyz349925756
+
+详细使用方法点击进去每个镜像里面就可以看到使用方法
+
+![image-20211126221033170](README.assets/image-20211126221033170.png)
+
+拉取k8s.gcr.io国外镜像。
+
+服务版本：linux/amd64  
+
