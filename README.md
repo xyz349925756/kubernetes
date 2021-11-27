@@ -178,3 +178,8 @@ Docker Hub: https://hub.docker.com/r/xyz349925756
 
 服务版本：linux/amd64  
 
+
+
+# 第三种方法
+
+github packages
