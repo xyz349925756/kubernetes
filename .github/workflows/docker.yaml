@@ -21,8 +21,8 @@ jobs:
       fail-fast: false
       matrix:
         include:  
-          - podname: k8s.gcr.io/pause
-            version: 3.5
+          - podname: k8s.gcr.io/coredns/coredns
+            version: v1.8.6
             
     steps:
       - name: Checkout ghcr.io 
