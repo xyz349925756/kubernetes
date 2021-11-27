@@ -2,19 +2,15 @@ name: Demo Push
 
 on:   
   push:
-    # Publish `master` as Docker `latest` image.
     branches:
       - main
-
-    # Publish `v1.2.3` tags as releases.
-    tags:
-      - v*
-
+#    tags:
+#      - v*
   # Run tests for any PRs.
   pull_request:
 
-env:
-  IMAGE_NAME: ghtoken_product_demo
+#env:
+#  IMAGE_NAME: ghtoken_product_demo
 
 jobs:
   # Push image to GitHub Packages.
@@ -24,30 +20,25 @@ jobs:
     permissions:
       packages: write
       contents: read
-
+      
+    strategy:
+      fail-fast: false
+      matrix:
+        include:  
+          - podname: k8s.gcr.io/pause
+            version: 3.5
+            
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout ghcr.io 
+        uses: actions/checkout@v2
 
-      - name: Build image
-        run: docker build . --file pause/Dockerfile --tag $IMAGE_NAME --label "runnumber=${GITHUB_RUN_ID}"
+      - name: 构建镜像
+        run: docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
 
-      - name: Log in to registry
-        # This is where you will update the PAT to GITHUB_TOKEN
+      - name: 登录ghcr.io
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image
         run: |
-          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
-
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "master" ] && VERSION=latest
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+          IMAGE_ID=ghcr.io/${{ github.repository_owner }}/${{matrix.podname}}:${{matrix.version}}
+          docker push ${{matrix.podname}}:${{matrix.version}}
