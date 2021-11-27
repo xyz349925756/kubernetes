@@ -2,9 +2,21 @@
 
 [![CoreDNS](README.assets/badge-163793027835710.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-163793030305512.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-163793032587014.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Metrics-Server](README.assets/badge-163793034693816.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Pause](README.assets/badge-163793036655918.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
 
+==如果你需要帮助可以联系我微信：Fly_349925756==
+
+​                         **如果解决了你的问题可以支持一下**
+
+![1](README.assets/1.jpg)
+
+
+
+
+
 # 第一种方法
 
 此仓库包含：
+
+<a name="gf">官方镜像</a>
 
 ```sh
 k8s.gcr.io/metrics-server/metrics-server:v0.5.2
@@ -13,14 +25,6 @@ k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
 k8s.gcr.io/coredns/coredns:v1.8.6
 k8s.gcr.io/pause:3.5
 ```
-
-==如果你需要帮助可以联系我微信：Fly_349925756==
-
-如果解决了你的问题可以支持一下
-
-![1](README.assets/1.jpg)
-
-# 如何使用？
 
 > 这里我们使用metrics-server为例
 
@@ -183,3 +187,20 @@ Docker Hub: https://hub.docker.com/r/xyz349925756
 # 第三种方法
 
 github packages
+
+进入packages:https://github.com/xyz349925756?tab=packages&repo_name=kubernetes
+
+![image-20211127201449535](README.assets/image-20211127201449535.png)
+
+进入packages点击需要的镜像。
+
+![image-20211127201543761](README.assets/image-20211127201543761.png)
+
+```sh
+$ docker pull ghcr.io/xyz349925756/pause-3.6:3.6
+
+拉取之后参考上面的官网镜像修改tag
+$ docker tag ghcr.io/xyz349925756/pause-3.6:3.6 k8s.gcr.io/pause:3.6
+```
+
+参考[官方名称](#gf)
