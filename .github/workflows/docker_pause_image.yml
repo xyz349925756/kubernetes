@@ -1,0 +1,35 @@
+# build kubernetes k8s.grc.io/images
+name: Pause
+on:
+  push:
+    paths:
+      - 'pause/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: 编译 "${{matrix.podname}} ${{matrix.version}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - podname: k8s.gcr.io/pause
+            pod-name: pause
+            version: 3.5
+      
+    steps:
+      - name: 准备结束
+        uses: actions/checkout@v2
+
+      - name: 构建 "${{matrix.pod-name}}"
+        run: |
+          docker build . --file pause/Dockerfile --tag ${{matrix.podname}}:${{matrix.version}}
+          docker save -o ${{matrix.pod-name}}.tar ${{matrix.podname}}:${{matrix.version}}          
+           
+      - name: 上传镜像
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{matrix.pod-name}}-${{matrix.version}}
+          path: ${{matrix.pod-name}}.tar
+          retention-days: 90
+          if-no-files-found: error

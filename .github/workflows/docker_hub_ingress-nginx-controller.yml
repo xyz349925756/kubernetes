@@ -1,0 +1,35 @@
+name: Ingress-Nginx-Controller镜像推送
+
+on:
+  push:
+    paths:
+      - 'ingress-nginx-controller/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    name: 编译 "${{matrix.podname}} ${{matrix.version}}"
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - podname: ingress-nginx-controller
+            version: v1.0.5
+            hub_name: xyz349925756
+            
+    steps:
+      - name: 准备...
+        uses: actions/checkout@v2
+
+      - name: 登录 docker.io
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: "构建"
+        run: docker build . --file ingress-nginx-controller/Dockerfile --tag ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}}
+          
+      - name: "上传"   
+        run: docker push ${{matrix.hub_name}}/${{matrix.podname}}:${{matrix.version}} 
