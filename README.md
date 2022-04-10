@@ -20,9 +20,7 @@ k8s.gcr.io/kube-apiserver:v1.23.5
 k8s.gcr.io/kube-controller-manager:v1.23.5
 k8s.gcr.io/kube-scheduler:v1.23.5
 k8s.gcr.io/kube-proxy:v1.23.5
-k8s.gcr.io/pause:3.6
 k8s.gcr.io/etcd:3.5.1-0
-k8s.gcr.io/coredns/coredns:v1.8.6
 ```
 
 
@@ -38,7 +36,7 @@ k8s.gcr.io/metrics-server/metrics-server:v0.5.2
 k8s.gcr.io/ingress-nginx/controller:v1.0.5
 k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
 k8s.gcr.io/coredns/coredns:v1.8.6
-k8s.gcr.io/pause:3.5
+k8s.gcr.io/pause:3.6
 ```
 
 > 这里我们使用metrics-server为例
@@ -149,37 +147,18 @@ node01     372m         37%    958Mi           25%
 
 ## 3.下载地址
 
-下面的地址点进去再进去下载最新的版本，也可以点击上面的标签访问。
-
----
-
-**k8s.gcr.io/metrics-server/metrics-server:v0.5.2**
-
-下载地址：https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml
-
----
-
-**k8s.gcr.io/ingress-nginx/controller:v1.0.5**
-
-https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml
-
----
-
-**k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1**
-
-https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml
-
----
-
-**k8s.gcr.io/coredns/coredns:v1.8.6**
-
-https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml
-
----
-
-**k8s.gcr.io/pause:3.5**
-
-https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml
+| 名称                               | 下载地址                                                     | 版本    |
+| ---------------------------------- | ------------------------------------------------------------ | ------- |
+| kube-apiserver                     | [![kube-apiserver](README.assets/badge-16495657165461.svg+xml)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-apiserver_image.yml) | v1.23.5 |
+| kube-controller-manager            |                                                              | v1.23.5 |
+| kube-scheduler                     |                                                              | v1.23.5 |
+| kube-proxy                         |                                                              | v1.23.5 |
+| etcd                               |                                                              | 3.5.1-0 |
+| metrics-server                     |                                                              | v0.5.2  |
+| ingress-nginx/controller           |                                                              | v1.0.5  |
+| ingress-nginx/kube-webhook-certgen |                                                              | v1.1.1  |
+| coredns                            |                                                              | v1.8.6  |
+| pause                              |                                                              | 3.6     |
 
 
 
