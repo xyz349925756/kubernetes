@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/kube-apiserver:v1.23.5
+          - podname: k8s.gcr.io/kube-apiserver
             pod-name: kube-apiserver
             version: v1.23.5
 
