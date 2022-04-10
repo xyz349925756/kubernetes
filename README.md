@@ -185,10 +185,11 @@ $ docker rmi xyz349925756/images_name:version
 
 服务版本：linux/amd64  
 
-使用docker你可以使用shell 直接拉取对应的镜像即可,参考脚本
+*使用docker你可以使用shell 直接拉取对应的镜像即可,参考脚本*
 
 ```sh
 [root@memcached ~]# vim pull_image.sh
+#/bin/bash  
 One_Image=(
   kube-apiserver:v1.23.5 
   kube-controller-manager:v1.23.5 
@@ -217,20 +218,46 @@ done
 
 for imagename2 in ${Two_Image[@]};
 do 
-  docker pull docker.io/xyz349925756/${imagename}
-  docker tag docker.io/xyz349925756/${imagename} k8s.gcr.io/`echo $imagename2|awk -F":" '{print $1}'`/${imagename}
-  docker rmi docker.io/xyz349925756/${imagename}
+  docker pull docker.io/xyz349925756/${imagename2}
+  docker tag docker.io/xyz349925756/${imagename2} k8s.gcr.io/`echo $imagename2|awk -F":" '{print $1}'`/${imagename2}
+  docker rmi docker.io/xyz349925756/${imagename2}
 done
 
 for imagename3 in ${Three_Image[@]};
 do 
-  docker pull docker.io/xyz349925756/${imagename}
-  docker tag docker.io/xyz349925756/${imagename} k8s.gcr.io/ingress-nginx/`echo $imagename3|awk -F"nginx-" '{print $2}'`
-  docker rmi docker.io/xyz349925756/${imagename}
+  docker pull docker.io/xyz349925756/${imagename3}
+  docker tag docker.io/xyz349925756/${imagename3} k8s.gcr.io/ingress-nginx/`echo $imagename3|awk -F"nginx-" '{print $2}'`
+  docker rmi docker.io/xyz349925756/${imagename3}
 done
 
 
 [root@memcached ~]# sh pull_image.sh 
+...
+
+[root@memcached ~]# docker images
+REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE
+k8s.gcr.io/kube-apiserver                       v1.23.5             3fc1d62d6587        3 weeks ago         135 MB
+k8s.gcr.io/kube-proxy                           v1.23.5             3c53fa8541f9        3 weeks ago         112 MB
+k8s.gcr.io/kube-scheduler                       v1.23.5             884d49d6d8c9        3 weeks ago         53.5 MB
+k8s.gcr.io/kube-controller-manager              v1.23.5             b0c9e5e4dbb1        3 weeks ago         125 MB
+k8s.gcr.io/metrics-server/metrics-server        v0.5.2              f73640fb5061        4 months ago        64.3 MB
+k8s.gcr.io/ingress-nginx/controller             v1.0.5              89ed8c731a38        4 months ago        285 MB
+k8s.gcr.io/etcd                                 3.5.1-0             25f8c7f3da61        5 months ago        293 MB
+k8s.gcr.io/ingress-nginx/kube-webhook-certgen   v1.1.1              c41e9fcadf5a        5 months ago        47.7 MB
+k8s.gcr.io/coredns/coredns                      v1.8.6              a4ca41631cc7        6 months ago        46.8 MB
+k8s.gcr.io/pause                                3.6                 6270bb605e12        7 months ago        683 kB
+
+# 对比官方镜像名称
+k8s.gcr.io/kube-apiserver:v1.23.5
+k8s.gcr.io/kube-controller-manager:v1.23.5
+k8s.gcr.io/kube-scheduler:v1.23.5
+k8s.gcr.io/kube-proxy:v1.23.5
+k8s.gcr.io/etcd:3.5.1-0
+k8s.gcr.io/metrics-server/metrics-server:v0.5.2
+k8s.gcr.io/ingress-nginx/controller:v1.0.5
+k8s.gcr.io/ingress-nginx/kube-webhook-certgen:v1.1.1
+k8s.gcr.io/coredns/coredns:v1.8.6
+k8s.gcr.io/pause:3.6
 ```
 
 
