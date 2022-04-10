@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/kube-scheduler:v1.23.5
+          - podname: k8s.gcr.io/kube-scheduler
             pod-name: kube-scheduler
             version: v1.23.5
 

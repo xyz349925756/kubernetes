@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/etcd:3.5.1-0
+          - podname: k8s.gcr.io/etcd
             pod-name: etcd
             version: 3.5.1-0
 

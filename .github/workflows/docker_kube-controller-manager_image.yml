@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - podname: k8s.gcr.io/kube-controller-manager:v1.23.5
+          - podname: k8s.gcr.io/kube-controller-manager
             pod-name: kube-controller-manager
             version: v1.23.5
 
