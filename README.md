@@ -8,7 +8,7 @@
 
 ![1](README.assets/1.jpg)
 
-# 【更行】
+# 【Update】
 
 新增下面镜像
 
