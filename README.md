@@ -2,6 +2,8 @@
 
 [![CoreDNS](README.assets/badge-163793027835710.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-163793030305512.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-163793032587014.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Metrics-Server](README.assets/badge-163793034693816.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Pause](README.assets/badge-163793036655918.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
 
+==这里链接并不全，详细的请到action 中查看==
+
 ==如果你需要帮助可以联系我微信：Fly_349925756==
 
 ​                         **如果解决了你的问题可以支持一下**
