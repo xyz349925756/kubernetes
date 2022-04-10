@@ -15,7 +15,7 @@ jobs:
         include:
           - podname: k8s.gcr.io/pause
             pod-name: pause
-            version: 3.5
+            version: 3.6
       
     steps:
       - name: 准备结束

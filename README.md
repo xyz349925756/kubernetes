@@ -1,9 +1,3 @@
-直接下载镜像：
-
-[![CoreDNS](README.assets/badge-163793027835710.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml)[![Ingress-Nginx-Controller](README.assets/badge-163793030305512.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml)[![Ingress-Nginx-Kube-webhook-certgen](README.assets/badge-163793032587014.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml)[![Metrics-Server](README.assets/badge-163793034693816.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml)[![Pause](README.assets/badge-163793036655918.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml)
-
-==这里链接并不全，详细的请到action 中查看==
-
 ==如果你需要帮助可以联系我微信：Fly_349925756==
 
 ​                         **如果解决了你的问题可以支持一下**
@@ -149,16 +143,18 @@ node01     372m         37%    958Mi           25%
 
 | 名称                               | 下载地址                                                     | 版本    |
 | ---------------------------------- | ------------------------------------------------------------ | ------- |
-| kube-apiserver                     | [![kube-apiserver](README.assets/badge-16495657165461.svg+xml)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-apiserver_image.yml) | v1.23.5 |
-| kube-controller-manager            |                                                              | v1.23.5 |
-| kube-scheduler                     |                                                              | v1.23.5 |
-| kube-proxy                         |                                                              | v1.23.5 |
-| etcd                               |                                                              | 3.5.1-0 |
-| metrics-server                     |                                                              | v0.5.2  |
-| ingress-nginx/controller           |                                                              | v1.0.5  |
-| ingress-nginx/kube-webhook-certgen |                                                              | v1.1.1  |
-| coredns                            |                                                              | v1.8.6  |
-| pause                              |                                                              | 3.6     |
+| kube-apiserver                     | [![kube-apiserver](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-apiserver_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-apiserver_image.yml) | v1.23.5 |
+| kube-controller-manager            | [![kube-controller-manager](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-controller-manager_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-controller-manager_image.yml) | v1.23.5 |
+| kube-scheduler                     | [![kube-scheduler](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-scheduler_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-scheduler_image.yml) | v1.23.5 |
+| kube-proxy                         | [![kube-proxy](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-proxy_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_kube-proxy_image.yml) | v1.23.5 |
+| etcd                               | [![etcd](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_etcd_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_etcd_image.yml) | 3.5.1-0 |
+| metrics-server                     | [![Metrics-Server](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_metrics-server_image.yml) | v0.5.2  |
+| ingress-nginx/controller           | [![Ingress-Nginx-Controller](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-controller_image.yml) | v1.0.5  |
+| ingress-nginx/kube-webhook-certgen | [![Ingress-Nginx-Kube-webhook-certgen](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_ingress-nginx-kube-webhook-certgen_image.yml) | v1.1.1  |
+| coredns                            | [![CoreDNS](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_coredns_image.yml) | v1.8.6  |
+| pause                              | [![Pause](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml/badge.svg)](https://github.com/xyz349925756/kubernetes/actions/workflows/docker_pause_image.yml) | 3.6     |
+
+
 
 
 
@@ -170,11 +166,72 @@ Docker Hub: https://hub.docker.com/r/xyz349925756
 
 详细使用方法点击进去每个镜像里面就可以看到使用方法
 
+通用方法！！
+
+```sh
+# 拉取镜像语法
+$ docker pull xyz349925756/images_name:version
+
+#修改tag为官网匹配的命名
+$ docker tag  xyz349925756/images_name:version  k8s.gcr.io/images_name:version
+
+#删除以前的
+$ docker rmi xyz349925756/images_name:version
+```
+
 ![image-20211126221033170](README.assets/image-20211126221033170.png)
 
 拉取k8s.gcr.io国外镜像。
 
 服务版本：linux/amd64  
+
+使用docker你可以使用shell 直接拉取对应的镜像即可,参考脚本
+
+```sh
+[root@memcached ~]# vim pull_image.sh
+One_Image=(
+  kube-apiserver:v1.23.5 
+  kube-controller-manager:v1.23.5 
+  kube-scheduler:v1.23.5 
+  kube-proxy:v1.23.5 
+  etcd:3.5.1-0
+  pause:3.6
+)
+
+Two_Image=(
+  metrics-server:v0.5.2
+  coredns:v1.8.6
+)
+
+Three_Image=(
+  ingress-nginx-controller:v1.0.5
+  ingress-nginx-kube-webhook-certgen:v1.1.1
+)
+
+for imagename in ${One_Image[@]};
+do 
+  docker pull docker.io/xyz349925756/${imagename}
+  docker tag docker.io/xyz349925756/${imagename} k8s.gcr.io/${imagename}
+  docker rmi docker.io/xyz349925756/${imagename}
+done
+
+for imagename2 in ${Two_Image[@]};
+do 
+  docker pull docker.io/xyz349925756/${imagename}
+  docker tag docker.io/xyz349925756/${imagename} k8s.gcr.io/`echo $imagename2|awk -F":" '{print $1}'`/${imagename}
+  docker rmi docker.io/xyz349925756/${imagename}
+done
+
+for imagename3 in ${Three_Image[@]};
+do 
+  docker pull docker.io/xyz349925756/${imagename}
+  docker tag docker.io/xyz349925756/${imagename} k8s.gcr.io/ingress-nginx/`echo $imagename3|awk -F"nginx-" '{print $2}'`
+  docker rmi docker.io/xyz349925756/${imagename}
+done
+
+
+[root@memcached ~]# sh pull_image.sh 
+```
 
 
 
