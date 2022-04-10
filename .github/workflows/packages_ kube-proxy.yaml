@@ -1,4 +1,4 @@
-name: kube-scheduler-packages
+name: kube-proxy-packages
   
 on:
   push:

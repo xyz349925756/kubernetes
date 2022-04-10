@@ -1,4 +1,4 @@
-name: kube-scheduler镜像推送
+name: kube-proxy镜像推送
 
 on:
   push:
