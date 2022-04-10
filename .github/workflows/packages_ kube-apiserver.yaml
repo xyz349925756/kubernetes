@@ -1,4 +1,4 @@
-name: kube-apiserver
+name: kube-apiserver-packages
   
 on:
   push:
