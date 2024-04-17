@@ -18,7 +18,7 @@ jobs:
       matrix:
         include:  
           - podname: coredns
-            version: v1.8.6
+            version: v1.11.1
     steps:
       - uses: actions/checkout@v2
 

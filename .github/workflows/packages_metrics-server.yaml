@@ -17,7 +17,7 @@ jobs:
       matrix:
         include:  
           - podname: metrics-server
-            version: v0.5.2
+            version: v0.7.1
     steps:
       - uses: actions/checkout@v2
 

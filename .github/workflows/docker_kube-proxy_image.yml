@@ -15,7 +15,7 @@ jobs:
         include:
           - podname: k8s.gcr.io/kube-proxy
             pod-name: kube-proxy
-            version: v1.23.5
+            version: v1.29.4
 
     steps:
       - name: 准备结束

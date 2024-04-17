@@ -15,7 +15,7 @@ jobs:
         include:
           - podname: k8s.gcr.io/kube-apiserver
             pod-name: kube-apiserver
-            version: v1.23.5
+            version: v1.29.4
 
     steps:
       - name: 准备结束
