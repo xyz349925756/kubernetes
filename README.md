@@ -4,13 +4,25 @@
 新增下面镜像
 
 ```sh
-[root@memcached ~]# kubeadm config images list
-k8s.gcr.io/kube-apiserver:v1.23.5
-k8s.gcr.io/kube-controller-manager:v1.23.5
-k8s.gcr.io/kube-scheduler:v1.23.5
-k8s.gcr.io/kube-proxy:v1.23.5
-k8s.gcr.io/etcd:3.5.1-0
+[god@G /mnt/d/下载/kubernetes/server/bin 21:25:31 ] $ sudo kubeadm config images list
+registry.k8s.io/kube-apiserver:v1.29.4
+registry.k8s.io/kube-controller-manager:v1.29.4
+registry.k8s.io/kube-scheduler:v1.29.4
+registry.k8s.io/kube-proxy:v1.29.4
+registry.k8s.io/coredns/coredns:v1.11.1
+registry.k8s.io/pause:3.9
+registry.k8s.io/etcd:3.5.12-0
 ```
+
+
+
+> [!tip]
+>
+> 下面的脚本对于新版本需要调整部分版本号。仓库中脚本同步更新到v1.29.4
+
+
+
+
 
 
 
