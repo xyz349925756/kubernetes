@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:  
           - podname: pause
-            version: 3.6
+            version: 3.9
             hub_name: xyz349925756
             
     steps:

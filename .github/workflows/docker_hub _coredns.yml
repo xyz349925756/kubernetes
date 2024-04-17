@@ -15,7 +15,7 @@ jobs:
       matrix:
         include:
           - podname: coredns
-            version: v1.8.6
+            version: v1.11.1
             hub_name: xyz349925756
             
     steps:
