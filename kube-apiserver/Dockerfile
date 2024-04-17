@@ -1,1 +1,1 @@
-FROM k8s.gcr.io/kube-apiserver:v1.23.5
+FROM registry.k8s.io/kube-apiserver:v1.29.4
